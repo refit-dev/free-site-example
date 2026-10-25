@@ -17,13 +17,13 @@ export const createCheckoutSession = action({
         }
 
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-            apiVersion: "2026-02-25.clover",
+            apiVersion: "2026-09-30.endive",
         });
 
         console.log("Creating checkout session for user:", identity.subject);
 
         const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],
+            allowed_payment_method_types: ["card"],
             line_items: [
                 {
                     price_data: {
